@@ -42,7 +42,7 @@ Automated Mitigation
      ↓
 Allow / Rate Limit / Block
 
-Behavioral Features
+## Behavioral Features
 
 The system analyzes several characteristics of API client behavior, including:
 
@@ -60,7 +60,7 @@ Burst activity
 
 These features help the system distinguish normal API usage from abnormal behavior.
 
-Machine Learning Models
+## Machine Learning Models
 
 The project compares the following machine learning models:
 
@@ -71,7 +71,7 @@ Isolation Forest
 
 Random Forest is used as the primary detection model because it provided the strongest validation performance among the evaluated models on the synthetic dataset.
 
-Risk-Based Mitigation
+## Risk-Based Mitigation
 
 The system classifies API behavior into three levels:
 
@@ -82,7 +82,7 @@ HIGH RISK	Strongly suspicious behavior	BLOCK
 
 Rate limiting temporarily restricts clients that send requests too frequently. Repeated violations can result in the client being blocked.
 
-Dataset
+## Dataset
 
 The project uses a synthetically generated API traffic dataset because real production API security traffic was not available.
 
@@ -101,7 +101,7 @@ The latest generated dataset contains approximately 100,000 API requests, which 
 
 Note: Model performance reported in this project is based on synthetic data. Real-world production traffic would be required for production-level validation.
 
-Project Structure
+## Project Structure
 api-abuse-detection/
 │
 ├── data/
@@ -159,7 +159,7 @@ Joblib – Saving and loading the trained model
 Matplotlib – Evaluation visualizations
 Swagger UI – API testing and documentation
 VS Code – Development environment
-Installation
+## Installation
 
 Clone the repository:
 
@@ -169,7 +169,8 @@ cd api-abuse-detection
 Install the required Python packages:
 
 pip install pandas scikit-learn fastapi uvicorn joblib matplotlib
-Running the Real-Time API
+
+## Running the Real-Time API
 
 Start the FastAPI server:
 
@@ -178,7 +179,7 @@ python -m uvicorn src.api.app:app --reload
 The API will be available at:
 
 http://127.0.0.1:8000
-Swagger API Testing
+## Swagger API Testing
 
 FastAPI provides an interactive Swagger UI automatically.
 
@@ -194,7 +195,8 @@ Abuse score
 Risk classification
 Recommended action
 Detection reasons
-Real-Time Detection Demo
+
+## Real-Time Detection Demo
 
 With the FastAPI server running, open another terminal and execute:
 
@@ -215,7 +217,8 @@ Repeated Violations
    HIGH RISK
       ↓
     BLOCK
-Example Detection Result
+
+## Example Detection Result
 
 A highly suspicious behavioral input can produce a result similar to:
 
@@ -231,7 +234,7 @@ The ML abuse probability represents the model's estimated probability that the b
 
 The abuse score is a separate behavioral risk score based on multiple suspicious characteristics.
 
-Model Evaluation
+## Model Evaluation
 
 The project evaluates the machine learning models using metrics such as:
 
@@ -245,11 +248,11 @@ Cross-validation
 
 Random Forest achieved the strongest overall validation performance on the synthetic behavioral dataset and was selected as the primary model.
 
-Project Objective
+## Project Objective
 
 The objective of this project is to demonstrate how machine learning and behavioral analysis can be combined with real-time API monitoring to identify abusive usage and automatically apply appropriate mitigation.
 
-Future Scope
+## Future Scope
 
 Possible future improvements include:
 
@@ -260,7 +263,7 @@ Adding authentication-specific monitoring
 Deploying the system in a cloud environment
 Adding a dedicated security monitoring dashboard
 Improving detection of low-and-slow attacks
-Disclaimer
+## Disclaimer
 
 This project is an academic/prototype implementation intended to demonstrate API abuse detection, behavioral analysis, machine learning, and automated mitigation techniques.
 
