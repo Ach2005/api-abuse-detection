@@ -9,52 +9,53 @@ APIs are commonly targeted by attackers through behaviors such as flooding, brut
 This project analyzes the behavior of API clients over multiple requests instead of relying only on a single request. It extracts behavioral features, uses machine learning to detect abuse, calculates an abuse risk score, and automatically responds to suspicious activity.
 
 ## Key Features
-Behavioral analysis of API traffic
-Machine learning-based abuse detection
-Multiple abuse scenario simulation
-Behavioral abuse score from 0–100
-Risk classification:
-NORMAL
-SUSPICIOUS
-HIGH RISK
-Real-time API monitoring using FastAPI middleware
-Automatic rate limiting
-Automatic blocking after repeated violations
-Comparison of multiple machine learning models
-Model validation and evaluation
-Swagger UI for API testing
+- Behavioral analysis of API traffic
+- Machine learning-based abuse detection
+- Multiple abuse scenario simulation
+- Behavioral abuse score from 0–100
+- Risk classification:
+-- NORMAL
+-- SUSPICIOUS
+-- HIGH RISK
+- Real-time API monitoring using FastAPI middleware
+- Automatic rate limiting
+- Automatic blocking after repeated violations
+- Comparison of multiple machine learning models
+- Model validation and evaluation
+- Swagger UI for API testing
 
 ## System Workflow
 
-API Requests
-     ↓
-Behavioral Feature Extraction
-     ↓
-Machine Learning Detection
-     ↓
-Behavioral Abuse Scoring
-     ↓
-Risk Classification
-     ↓
-Automated Mitigation
-     ↓
-Allow / Rate Limit / Block
+
+**API Requests**  
+↓  
+**Behavioral Feature Extraction**  
+↓  
+**Machine Learning Detection**  
+↓  
+**Behavioral Abuse Scoring**  
+↓  
+**Risk Classification**  
+↓  
+**Automated Mitigation**  
+↓  
+**Allow / Rate Limit / Block**
 
 ## Behavioral Features
 
 The system analyzes several characteristics of API client behavior, including:
 
-Session request count
-Requests per minute
-Failed authentication ratio
-API error ratio
-Unique endpoint count
-Endpoint diversity
-Mean request interval
-Request interval variation
-Night activity ratio
-Geographic movement
-Burst activity
+- Session request count
+- Requests per minute
+- Failed authentication ratio
+- API error ratio
+- Unique endpoint count
+- Endpoint diversity
+- Mean request interval
+- Request interval variation
+- Night activity ratio
+- Geographic movement
+- Burst activity
 
 These features help the system distinguish normal API usage from abnormal behavior.
 
@@ -86,14 +87,14 @@ The project uses a synthetically generated API traffic dataset because real prod
 
 The dataset contains multiple scenarios, including:
 
-Normal traffic
-Brute force
-Flooding
-Endpoint spam
-Scraping
-Stealth abuse
-Geo anomaly
-Unusual timing
+- Normal traffic
+- Brute force
+- Flooding
+- Endpoint spam
+- Scraping
+- Stealth abuse
+- Geo anomaly
+- Unusual timing
 
 The latest generated dataset contains approximately 100,000 API requests, which are aggregated into behavioral sessions for analysis and machine learning.
 
@@ -101,64 +102,60 @@ Note: Model performance reported in this project is based on synthetic data. Rea
 
 ## Project Structure
 
-api-abuse-detection/
-│
-├── data/
-│   ├── raw/
-│   │   └── api_traffic_raw.csv
-│   └── processed/
-│       └── api_behavioral_features.csv
-│
-├── models/
-│   └── random_forest_model.pkl
-│
-├── results/
-│   ├── api_abuse_scores.csv
-│   ├── final_system_evaluation.csv
-│   ├── ml_model_results.csv
-│   ├── model_validation_results.csv
-│   ├── rate_limit_baseline_results.csv
-│   └── evaluation graphs
-│
-├── src/
-│   ├── api/
-│   │   ├── app.py
-│   │   ├── middleware.py
-│   │   └── test_realtime.py
-│   │
-│   ├── data_generation/
-│   │   └── generate_api_traffic.py
-│   │
-│   ├── detection/
-│   │   ├── detect_abuse.py
-│   │   └── rate_limiter.py
-│   │
-│   ├── evaluation/
-│   │   ├── evaluate_models.py
-│   │   └── final_evaluation.py
-│   │
-│   ├── features/
-│   │   └── behavioral_features.py
-│   │
-│   ├── models/
-│   │   └── train_models.py
-│   │
-│   └── scoring/
-│       └── abuse_score.py
-│
-├── .gitignore
-└── README.md
+
+
+### Data
+
+- `data/raw/` — Raw API traffic dataset
+- `data/processed/` — Processed behavioral features
+
+### Models
+
+- `models/` — Trained Random Forest model
+
+### Results
+
+- `results/` — Model results, evaluation files, and graphs
+
+### Source Code
+
+- `src/api/` — FastAPI application, middleware, and real-time testing
+- `src/data_generation/` — Synthetic API traffic generation
+- `src/detection/` — Abuse detection and rate limiting
+- `src/evaluation/` — Model and system evaluation
+- `src/features/` — Behavioral feature extraction
+- `src/models/` — Machine learning model training
+- `src/scoring/` — Behavioral abuse scoring
 
 ## Technology Stack
-Python — Main programming language
-Pandas — Data processing and analysis
-Scikit-learn — Machine learning
-FastAPI — API development
-Uvicorn — ASGI server
-Joblib — Saving and loading the trained model
-Matplotlib — Evaluation visualizations
-Swagger UI — API testing and documentation
-VS Code — Development environment
+
+- **Python**  
+  Main programming language
+
+- **Pandas**  
+  Data processing and analysis
+
+- **Scikit-learn**  
+  Machine learning
+
+- **FastAPI**  
+  API development
+
+- **Uvicorn**  
+  ASGI server
+
+- **Joblib**  
+  Saving and loading the trained model
+
+- **Matplotlib**  
+  Evaluation visualizations
+
+- **Swagger UI**  
+  API testing and documentation
+
+- **VS Code**  
+  Development environment
+  
 ## Installation
 
 Clone the repository using:
@@ -193,12 +190,12 @@ http://127.0.0.1:8000/docs
 
 The /detect endpoint can be used to provide behavioral features and observe:
 
-ML prediction
-ML abuse probability
-Abuse score
-Risk classification
-Recommended action
-Detection reasons
+- ML prediction
+- ML abuse probability
+- Abuse score
+- Risk classification
+- Recommended action
+- Detection reasons
 
 ## Real-Time Detection Demo
 
@@ -208,12 +205,63 @@ python src/api/test_realtime.py
 
 The test demonstrates:
 
-Normal Traffic → ALLOW
+**Normal Traffic**
 
-Suspicious Traffic → RATE LIMIT
+↓
 
-Repeated Violations → HIGH RISK → BLOCK
+**ALLOW**
 
+↓
+
+**Suspicious Traffic**
+
+↓
+
+**RATE LIMIT**
+
+↓
+
+**Repeated Violations**
+
+↓
+
+**HIGH RISK**
+
+↓
+
+**BLOCK**
+
+GitHub will display it cleanly as:
+
+Real-Time Detection Flow
+
+Normal Traffic
+
+↓
+
+ALLOW
+
+↓
+
+Suspicious Traffic
+
+↓
+
+RATE LIMIT
+
+↓
+
+Repeated Violations
+
+↓
+
+HIGH RISK
+
+↓
+
+BLOCK
+
+For your README, I’d use exactly this version. It matches your actual real-time system and is much cleaner.
 ## Example Detection Result
 
 A highly suspicious behavioral input can produce a result similar to:
@@ -234,13 +282,13 @@ The abuse score is a separate behavioral risk score based on multiple suspicious
 
 The project evaluates the machine learning models using metrics such as:
 
-Precision
-Recall
-F1-score
-False Positive Rate
-ROC-AUC
-Confusion Matrix
-Cross-validation
+- Precision
+- Recall
+- F1-score
+- False Positive Rate
+- ROC-AUC
+- Confusion Matrix
+- Cross-validation
 
 Random Forest achieved the strongest overall validation performance on the synthetic behavioral dataset and was selected as the primary model.
 
@@ -252,13 +300,13 @@ The objective of this project is to demonstrate how machine learning and behavio
 
 Possible future improvements include:
 
-Testing with real-world API traffic
-Adding database or Redis-based distributed tracking
-Integrating IP reputation and threat intelligence
-Adding authentication-specific monitoring
-Deploying the system in a cloud environment
-Adding a dedicated security monitoring dashboard
-Improving detection of low-and-slow attacks
+- Testing with real-world API traffic
+- Adding database or Redis-based distributed tracking
+- Integrating IP reputation and threat intelligence
+- Adding authentication-specific monitoring
+- Deploying the system in a cloud environment
+- Adding a dedicated security monitoring dashboard
+- Improving detection of low-and-slow attacks
 
 ## Disclaimer
 
