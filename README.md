@@ -1,48 +1,33 @@
-# Machine Learning-Based Real-Time API Abuse Detection and Automated Mitigation
+Machine Learning-Based Real-Time API Abuse Detection and Automated Mitigation
 
 A Python-based API security system that uses behavioral analysis and machine learning to detect abnormal API usage in real time and automatically apply mitigation such as rate limiting and blocking.
 
-## Overview
+Overview
 
 APIs are commonly targeted by attackers through behaviors such as flooding, brute-force attempts, endpoint spamming, scraping, and other abnormal request patterns.
 
 This project analyzes the behavior of API clients over multiple requests instead of relying only on a single request. It extracts behavioral features, uses machine learning to detect abuse, calculates an abuse risk score, and automatically responds to suspicious activity.
 
-## Key Features
+Key Features
+Behavioral analysis of API traffic
+Machine learning-based abuse detection
+Multiple abuse scenario simulation
+Behavioral abuse score from 0–100
+Risk classification:
+NORMAL
+SUSPICIOUS
+HIGH RISK
+Real-time API monitoring using FastAPI middleware
+Automatic rate limiting
+Automatic blocking after repeated violations
+Comparison of multiple machine learning models
+Model validation and evaluation
+Swagger UI for API testing
+System Workflow
 
-- Behavioral analysis of API traffic
-- Machine learning-based abuse detection
-- Multiple abuse scenario simulation
-- Behavioral abuse score from 0–100
-- Risk classification:
-  - NORMAL
-  - SUSPICIOUS
-  - HIGH RISK
-- Real-time API monitoring using FastAPI middleware
-- Automatic rate limiting
-- Automatic blocking after repeated violations
-- Comparison of multiple machine learning models
-- Model validation and evaluation
-- Swagger UI for API testing
+API Requests → Behavioral Feature Extraction → Machine Learning Detection → Behavioral Abuse Scoring → Risk Classification → Automated Mitigation → Allow / Rate Limit / Block
 
-## System Workflow
-
-```text
-API Requests
-     ↓
-Behavioral Feature Extraction
-     ↓
-Machine Learning Detection
-     ↓
-Behavioral Abuse Scoring
-     ↓
-Risk Classification
-     ↓
-Automated Mitigation
-     ↓
-Allow / Rate Limit / Block
-
-## Behavioral Features
+Behavioral Features
 
 The system analyzes several characteristics of API client behavior, including:
 
@@ -60,7 +45,7 @@ Burst activity
 
 These features help the system distinguish normal API usage from abnormal behavior.
 
-## Machine Learning Models
+Machine Learning Models
 
 The project compares the following machine learning models:
 
@@ -71,7 +56,7 @@ Isolation Forest
 
 Random Forest is used as the primary detection model because it provided the strongest validation performance among the evaluated models on the synthetic dataset.
 
-## Risk-Based Mitigation
+Risk-Based Mitigation
 
 The system classifies API behavior into three levels:
 
@@ -82,7 +67,7 @@ HIGH RISK	Strongly suspicious behavior	BLOCK
 
 Rate limiting temporarily restricts clients that send requests too frequently. Repeated violations can result in the client being blocked.
 
-## Dataset
+Dataset
 
 The project uses a synthetically generated API traffic dataset because real production API security traffic was not available.
 
@@ -101,85 +86,53 @@ The latest generated dataset contains approximately 100,000 API requests, which 
 
 Note: Model performance reported in this project is based on synthetic data. Real-world production traffic would be required for production-level validation.
 
-## Project Structure
-api-abuse-detection/
-│
-├── data/
-│   ├── raw/
-│   │   └── api_traffic_raw.csv
-│   └── processed/
-│       └── api_behavioral_features.csv
-│
-├── models/
-│   └── random_forest_model.pkl
-│
-├── results/
-│   ├── api_abuse_scores.csv
-│   ├── final_system_evaluation.csv
-│   ├── ml_model_results.csv
-│   ├── model_validation_results.csv
-│   ├── rate_limit_baseline_results.csv
-│   └── evaluation graphs
-│
-├── src/
-│   ├── api/
-│   │   ├── app.py
-│   │   ├── middleware.py
-│   │   └── test_realtime.py
-│   │
-│   ├── data_generation/
-│   │   └── generate_api_traffic.py
-│   │
-│   ├── detection/
-│   │   ├── detect_abuse.py
-│   │   └── rate_limiter.py
-│   │
-│   ├── evaluation/
-│   │   ├── evaluate_models.py
-│   │   └── final_evaluation.py
-│   │
-│   ├── features/
-│   │   └── behavioral_features.py
-│   │
-│   ├── models/
-│   │   └── train_models.py
-│   │
-│   └── scoring/
-│       └── abuse_score.py
-│
-├── .gitignore
-└── README.md
+Project Structure
+data/raw/ — Raw API traffic dataset
+data/processed/ — Processed behavioral features
+models/ — Trained Random Forest model
+results/ — Model results, evaluation files, and graphs
+src/api/ — FastAPI application, middleware, and real-time testing
+src/data_generation/ — Synthetic API traffic generation
+src/detection/ — Abuse detection and rate limiting
+src/evaluation/ — Model and system evaluation
+src/features/ — Behavioral feature extraction
+src/models/ — Machine learning model training
+src/scoring/ — Behavioral abuse scoring
 Technology Stack
-Python – Main programming language
-Pandas – Data processing and analysis
-Scikit-learn – Machine learning
-FastAPI – API development
-Uvicorn – ASGI server
-Joblib – Saving and loading the trained model
-Matplotlib – Evaluation visualizations
-Swagger UI – API testing and documentation
-VS Code – Development environment
-## Installation
+Python — Main programming language
+Pandas — Data processing and analysis
+Scikit-learn — Machine learning
+FastAPI — API development
+Uvicorn — ASGI server
+Joblib — Saving and loading the trained model
+Matplotlib — Evaluation visualizations
+Swagger UI — API testing and documentation
+VS Code — Development environment
+Installation
 
-Clone the repository:
+Clone the repository using:
 
 git clone https://github.com/Ach2005/api-abuse-detection.git
+
+Then move into the project directory:
+
 cd api-abuse-detection
 
 Install the required Python packages:
 
 pip install pandas scikit-learn fastapi uvicorn joblib matplotlib
 
-## Running the Real-Time API
+Running the Real-Time API
 
-Start the FastAPI server:
+Start the FastAPI server using:
 
 python -m uvicorn src.api.app:app --reload
 
 The API will be available at:
 
 http://127.0.0.1:8000
-## Swagger API Testing
+
+Swagger API Testing
 
 FastAPI provides an interactive Swagger UI automatically.
 
@@ -195,8 +148,7 @@ Abuse score
 Risk classification
 Recommended action
 Detection reasons
-
-## Real-Time Detection Demo
+Real-Time Detection Demo
 
 With the FastAPI server running, open another terminal and execute:
 
@@ -204,21 +156,13 @@ python src/api/test_realtime.py
 
 The test demonstrates:
 
-Normal Traffic
-      ↓
-    ALLOW
+Normal Traffic → ALLOW
 
-Suspicious Traffic
-      ↓
-  RATE LIMIT
+Suspicious Traffic → RATE LIMIT
 
-Repeated Violations
-      ↓
-   HIGH RISK
-      ↓
-    BLOCK
+Repeated Violations → HIGH RISK → BLOCK
 
-## Example Detection Result
+Example Detection Result
 
 A highly suspicious behavioral input can produce a result similar to:
 
@@ -234,7 +178,7 @@ The ML abuse probability represents the model's estimated probability that the b
 
 The abuse score is a separate behavioral risk score based on multiple suspicious characteristics.
 
-## Model Evaluation
+Model Evaluation
 
 The project evaluates the machine learning models using metrics such as:
 
@@ -248,11 +192,11 @@ Cross-validation
 
 Random Forest achieved the strongest overall validation performance on the synthetic behavioral dataset and was selected as the primary model.
 
-## Project Objective
+Project Objective
 
 The objective of this project is to demonstrate how machine learning and behavioral analysis can be combined with real-time API monitoring to identify abusive usage and automatically apply appropriate mitigation.
 
-## Future Scope
+Future Scope
 
 Possible future improvements include:
 
@@ -263,10 +207,6 @@ Adding authentication-specific monitoring
 Deploying the system in a cloud environment
 Adding a dedicated security monitoring dashboard
 Improving detection of low-and-slow attacks
-## Disclaimer
+Disclaimer
 
 This project is an academic/prototype implementation intended to demonstrate API abuse detection, behavioral analysis, machine learning, and automated mitigation techniques.
-
-
-
-
