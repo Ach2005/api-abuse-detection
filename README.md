@@ -23,9 +23,22 @@ Automatic blocking after repeated violations
 Comparison of multiple machine learning models
 Model validation and evaluation
 Swagger UI for API testing
-System Workflow
 
-API Requests → Behavioral Feature Extraction → Machine Learning Detection → Behavioral Abuse Scoring → Risk Classification → Automated Mitigation → Allow / Rate Limit / Block
+## System Workflow
+
+API Requests
+     ↓
+Behavioral Feature Extraction
+     ↓
+Machine Learning Detection
+     ↓
+Behavioral Abuse Scoring
+     ↓
+Risk Classification
+     ↓
+Automated Mitigation
+     ↓
+Allow / Rate Limit / Block
 
 ## Behavioral Features
 
@@ -87,18 +100,56 @@ The latest generated dataset contains approximately 100,000 API requests, which 
 Note: Model performance reported in this project is based on synthetic data. Real-world production traffic would be required for production-level validation.
 
 ## Project Structure
-data/raw/ — Raw API traffic dataset
-data/processed/ — Processed behavioral features
-models/ — Trained Random Forest model
-results/ — Model results, evaluation files, and graphs
-src/api/ — FastAPI application, middleware, and real-time testing
-src/data_generation/ — Synthetic API traffic generation
-src/detection/ — Abuse detection and rate limiting
-src/evaluation/ — Model and system evaluation
-src/features/ — Behavioral feature extraction
-src/models/ — Machine learning model training
-src/scoring/ — Behavioral abuse scoring
-Technology Stack
+
+api-abuse-detection/
+│
+├── data/
+│   ├── raw/
+│   │   └── api_traffic_raw.csv
+│   └── processed/
+│       └── api_behavioral_features.csv
+│
+├── models/
+│   └── random_forest_model.pkl
+│
+├── results/
+│   ├── api_abuse_scores.csv
+│   ├── final_system_evaluation.csv
+│   ├── ml_model_results.csv
+│   ├── model_validation_results.csv
+│   ├── rate_limit_baseline_results.csv
+│   └── evaluation graphs
+│
+├── src/
+│   ├── api/
+│   │   ├── app.py
+│   │   ├── middleware.py
+│   │   └── test_realtime.py
+│   │
+│   ├── data_generation/
+│   │   └── generate_api_traffic.py
+│   │
+│   ├── detection/
+│   │   ├── detect_abuse.py
+│   │   └── rate_limiter.py
+│   │
+│   ├── evaluation/
+│   │   ├── evaluate_models.py
+│   │   └── final_evaluation.py
+│   │
+│   ├── features/
+│   │   └── behavioral_features.py
+│   │
+│   ├── models/
+│   │   └── train_models.py
+│   │
+│   └── scoring/
+│       └── abuse_score.py
+│
+├── .gitignore
+└── README.md
+
+## Technology Stack
 Python — Main programming language
 Pandas — Data processing and analysis
 Scikit-learn — Machine learning
