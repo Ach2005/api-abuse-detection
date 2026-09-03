@@ -231,46 +231,16 @@ The test demonstrates:
 
 **BLOCK**
 
-GitHub will display it cleanly as:
 
-Real-Time Detection Flow
-
-Normal Traffic
-
-↓
-
-ALLOW
-
-↓
-
-Suspicious Traffic
-
-↓
-
-RATE LIMIT
-
-↓
-
-Repeated Violations
-
-↓
-
-HIGH RISK
-
-↓
-
-BLOCK
-
-For your README, I’d use exactly this version. It matches your actual real-time system and is much cleaner.
 ## Example Detection Result
 
 A highly suspicious behavioral input can produce a result similar to:
 
-ML Prediction: 1
-ML Abuse Probability: 82.41%
-Abuse Score: 100
-Risk: HIGH RISK
-Action: BLOCK
+- ML Prediction: 1
+- ML Abuse Probability: 82.41%
+- Abuse Score: 100
+- Risk: HIGH RISK
+- Action: BLOCK
 
 The ML prediction indicates whether the trained model classifies the behavior as normal or abusive.
 
